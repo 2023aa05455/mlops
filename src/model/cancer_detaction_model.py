@@ -30,13 +30,7 @@ CONFIG = {
         }
     }
 }
-# Set MLflow tracking URI and experiment
-# mlflow.set_tracking_uri(str(Path("./mlruns").resolve()))
 
-# mlflow.set_experiment("Cancer Detection V2")
-
-# Debugging: Check if experiment and tracking URI are set
-# print("MLflow experiment set:", mlflow.get_experiment_by_name("Cancer Detection V2"))
 print("MLflow tracking URI:", mlflow.get_tracking_uri())
 
 # Step 1: Load dataset
@@ -92,31 +86,31 @@ def train_and_evaluate(model_name, model_config, X_train, X_test, y_train, y_tes
 # Step 4: Main pipeline with MLflow integration
 def main():
     # Initialize MLflow experiment
-    # mlflow.set_experiment("Cancer Detection v4")
+    mlflow.set_experiment("Cancer Detection v4")
 
     # Load and preprocess data
     X, y = load_data()
     X_train, X_test, y_train, y_test = preprocess_data(X, y)
 
-    # for model_name, model_config in CONFIG["models"].items():
-    #     with mlflow.start_run(run_name=model_name):
-    #         print(f"Training and evaluating {model_name}...")
-    #
-    #         # Train and evaluate
-    #         model, accuracy, precision, f1 = train_and_evaluate(
-    #             model_name, model_config, X_train, X_test, y_train, y_test
-    #         )
-    #
-    #         # Log parameters, metrics, and model to MLflow
-    #         mlflow.log_params(model_config)
-    #         mlflow.log_metric("accuracy", accuracy)
-    #         mlflow.log_metric("precision", precision)
-    #         mlflow.log_metric("f1_score", f1)
-    #         mlflow.sklearn.log_model(model, artifact_path="model")
-    #
-    #         print(f"{model_name} metrics - Accuracy: {accuracy:.2f}, Precision: {precision:.2f}, F1-score: {f1:.2f}")
-    #     # mlflow.end_run()
-    # print("All models are trained and logged to mlflow!")
+    for model_name, model_config in CONFIG["models"].items():
+        with mlflow.start_run(run_name=model_name):
+            print(f"Training and evaluating {model_name}...")
+
+            # Train and evaluate
+            model, accuracy, precision, f1 = train_and_evaluate(
+                model_name, model_config, X_train, X_test, y_train, y_test
+            )
+
+            # Log parameters, metrics, and model to MLflow
+            mlflow.log_params(model_config)
+            mlflow.log_metric("accuracy", accuracy)
+            mlflow.log_metric("precision", precision)
+            mlflow.log_metric("f1_score", f1)
+            mlflow.sklearn.log_model(model, artifact_path="model")
+
+            print(f"{model_name} metrics - Accuracy: {accuracy:.2f}, Precision: {precision:.2f}, F1-score: {f1:.2f}")
+        # mlflow.end_run()
+    print("All models are trained and logged to mlflow!")
 
 if __name__ == "__main__":
     main()
