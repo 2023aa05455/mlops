@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/ychavhan/Documents/M.Tech/MLOPS/mlops/src/model/mlruns/785877992117881593/54e5d7cf63f64f8e8a8db9d9a6a78042/artifacts
+end_time: 1737731856120
+entry_point_name: ''
+experiment_id: '785877992117881593'
+lifecycle_stage: active
+run_id: 54e5d7cf63f64f8e8a8db9d9a6a78042
+run_name: LogisticRegression
+run_uuid: 54e5d7cf63f64f8e8a8db9d9a6a78042
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1737731852496
+status: 3
+tags: []
+user_id: ychavhan
