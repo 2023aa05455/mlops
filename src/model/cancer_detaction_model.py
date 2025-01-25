@@ -1,7 +1,5 @@
-# import os
 import mlflow
 import mlflow.sklearn
-# import numpy as np
 import pandas as pd
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
@@ -10,7 +8,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, precision_score, f1_score
-# from pathlib import Path
 
 # Configuration
 CONFIG = {
@@ -30,7 +27,6 @@ CONFIG = {
         }
     }
 }
-
 print("MLflow tracking URI:", mlflow.get_tracking_uri())
 
 # Step 1: Load dataset
@@ -43,6 +39,7 @@ def load_data():
     return X, y
 
 # Step 2: Preprocess the data
+
 def preprocess_data(X, y):
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
@@ -84,6 +81,7 @@ def train_and_evaluate(model_name, model_config, X_train, X_test, y_train, y_tes
     return model, accuracy, precision, f1
 
 # Step 4: Main pipeline with MLflow integration
+
 def main():
     # Initialize MLflow experiment
     mlflow.set_experiment("Cancer Detection v4")
@@ -109,6 +107,7 @@ def main():
 
             print(f"{model_name} metrics - Accuracy: {accuracy:.2f}, Precision: {precision:.2f}, F1-score: {f1:.2f}")
     print("All models are trained and logged to mlflow!")
+
 
 if __name__ == "__main__":
     main()
