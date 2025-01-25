@@ -1,7 +1,7 @@
-import os
+# import os
 import mlflow
 import mlflow.sklearn
-import numpy as np
+# import numpy as np
 import pandas as pd
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
@@ -10,7 +10,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, precision_score, f1_score
-from pathlib import Path
+# from pathlib import Path
 
 # Configuration
 CONFIG = {
@@ -100,7 +100,6 @@ def main():
             model, accuracy, precision, f1 = train_and_evaluate(
                 model_name, model_config, X_train, X_test, y_train, y_test
             )
-
             # Log parameters, metrics, and model to MLflow
             mlflow.log_params(model_config)
             mlflow.log_metric("accuracy", accuracy)
@@ -109,7 +108,6 @@ def main():
             mlflow.sklearn.log_model(model, artifact_path="model")
 
             print(f"{model_name} metrics - Accuracy: {accuracy:.2f}, Precision: {precision:.2f}, F1-score: {f1:.2f}")
-        # mlflow.end_run()
     print("All models are trained and logged to mlflow!")
 
 if __name__ == "__main__":
