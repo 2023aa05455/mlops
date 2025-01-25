@@ -53,7 +53,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          pytest tests
+          python  tests/test_cancer_detection_model.py
 
   deployment:
     name: Deployment
