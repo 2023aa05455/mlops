@@ -6,14 +6,17 @@ from mlops.src.model.cancer_detaction_model import (
     CONFIG,
 )
 
+
 @pytest.fixture
 def data():
-    # Load and preprocess data
+    """Fixture to load and preprocess data."""
     X, y = load_data()
     X_train, X_test, y_train, y_test = preprocess_data(X, y)
     return X_train, X_test, y_train, y_test
 
+
 def test_train_and_evaluate(data):
+    """Test for training and evaluating models."""
     X_train, X_test, y_train, y_test = data
 
     for model_name, model_config in CONFIG["models"].items():
