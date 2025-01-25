@@ -1,4 +1,4 @@
-from unittest import TestCase
+import pytest
 from mlops.src.model.cancer_detaction_model import (
     train_and_evaluate,
     preprocess_data,
@@ -6,17 +6,18 @@ from mlops.src.model.cancer_detaction_model import (
     CONFIG,
 )
 
+@pytest.fixture
+def data():
+    # Load and preprocess data
+    X, y = load_data()
+    X_train, X_test, y_train, y_test = preprocess_data(X, y)
+    return X_train, X_test, y_train, y_test
 
-class Train_and_Evaluate_Model(TestCase):
-    def test_train_and_evaluate(self):
-        # Load the data
-        X, y = load_data()
+def test_train_and_evaluate(data):
+    X_train, X_test, y_train, y_test = data
 
-        # Preprocess data
-        X_train, X_test, y_train, y_test = preprocess_data(X, y)
-
-        for model_name, model_config in CONFIG["models"].items():
-            model, accuracy, precision, f1 = train_and_evaluate(
-                model_name, model_config, X_train, X_test, y_train, y_test
-            )
-            assert accuracy > 0.9, f"Model accuracy should be >0.9, got {accuracy}"
+    for model_name, model_config in CONFIG["models"].items():
+        model, accuracy, precision, f1 = train_and_evaluate(
+            model_name, model_config, X_train, X_test, y_train, y_test
+        )
+        assert accuracy > 0.9, f"Model accuracy should be >0.9, got {accuracy}"
