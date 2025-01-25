@@ -107,7 +107,10 @@ def main():
             mlflow.sklearn.log_model(model, artifact_path="model")
 
             print(
-                f"{model_name} metrics - Accuracy: {accuracy:.2f}, Precision: {precision:.2f}, F1-score: {f1:.2f}"
+                f"{model_name} metrics - "
+                f"Accuracy: {accuracy:.2f}, "
+                f"Precision: {precision:.2f}, "
+                f"F1-score: {f1:.2f}"
             )
 
 
