@@ -1,5 +1,5 @@
 import pytest
-from mlops.src.model.cancer_detaction_model import (
+from mlops.src.model.cancer_detection_model import (
     train_and_evaluate,
     preprocess_data,
     load_data,
