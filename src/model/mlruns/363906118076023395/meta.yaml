@@ -1,0 +1,7 @@
+artifact_location: file:///C:/Users/ychavhan/Documents/M.Tech/MLOPS/mlops/src/model/mlruns/363906118076023395
+creation_time: 1737731911119
+experiment_id: '363906118076023395'
+last_update_time: 1737783735426
+lifecycle_stage: active
+name: Cancer Detection v1
+tags: {}
