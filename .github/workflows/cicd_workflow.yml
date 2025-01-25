@@ -77,7 +77,7 @@ jobs:
 
       - name: Deploy Model
         run: |
-          pwd
+          ls -ltr
           cd src/model
           python cancer_detection_model.py
           echo "Model deployed successfully!"
