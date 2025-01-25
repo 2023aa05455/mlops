@@ -34,7 +34,7 @@ jobs:
 
   testing:
     name: Testing
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: linting
 
     steps:
@@ -57,7 +57,7 @@ jobs:
 
   deployment:
     name: Deployment
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: testing
     if: github.ref == 'refs/heads/main'
 
@@ -77,5 +77,5 @@ jobs:
 
       - name: Deploy Model
         run: |
-          python cancer_detection_model.py
+          python src/model/cancer_detection_model.py
           echo "Model deployed successfully!"
