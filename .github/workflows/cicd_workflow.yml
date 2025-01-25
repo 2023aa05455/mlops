@@ -77,5 +77,7 @@ jobs:
 
       - name: Deploy Model
         run: |
-          python /home/runner/work/mlops/src/model/cancer_detection_model.py
+          pwd
+          cd src/model
+          python cancer_detection_model.py
           echo "Model deployed successfully!"
