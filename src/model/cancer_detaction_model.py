@@ -14,18 +14,10 @@ CONFIG = {
     "random_seed": 42,
     "test_size": 0.2,
     "models": {
-        "RandomForest": {
-            "n_estimators": 100,
-            "max_depth": 5
-        },
-        "SVM": {
-            "kernel": "linear",
-            "C": 1.0
-        },
-        "LogisticRegression": {
-            "solver": "liblinear"
-        }
-    }
+        "RandomForest": {"n_estimators": 100, "max_depth": 5},
+        "SVM": {"kernel": "linear", "C": 1.0},
+        "LogisticRegression": {"solver": "liblinear"},
+    },
 }
 print("MLflow tracking URI:", mlflow.get_tracking_uri())
 
@@ -41,6 +33,7 @@ def load_data():
     y = pd.Series(data.target, name="target")
     return X, y
 
+
 # Step 2: Preprocess the data
 
 
@@ -48,35 +41,30 @@ def preprocess_data(X, y):
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
     X_train, X_test, y_train, y_test = train_test_split(
-        X_scaled, y, test_size=CONFIG["test_size"], random_state=CONFIG["random_seed"])
+        X_scaled, y, test_size=CONFIG["test_size"], random_state=CONFIG["random_seed"]
+    )
     return X_train, X_test, y_train, y_test
+
 
 # Step 3: Train and evaluate models
 
 
-def train_and_evaluate(
-        model_name,
-        model_config,
-        X_train,
-        X_test,
-        y_train,
-        y_test):
+def train_and_evaluate(model_name, model_config, X_train, X_test, y_train, y_test):
     if model_name == "RandomForest":
         model = RandomForestClassifier(
             n_estimators=model_config["n_estimators"],
             max_depth=model_config["max_depth"],
-            random_state=CONFIG["random_seed"]
+            random_state=CONFIG["random_seed"],
         )
     elif model_name == "SVM":
         model = SVC(
             kernel=model_config["kernel"],
             C=model_config["C"],
-            random_state=CONFIG["random_seed"]
+            random_state=CONFIG["random_seed"],
         )
     elif model_name == "LogisticRegression":
         model = LogisticRegression(
-            solver=model_config["solver"],
-            random_state=CONFIG["random_seed"]
+            solver=model_config["solver"], random_state=CONFIG["random_seed"]
         )
     else:
         raise ValueError(f"Unsupported model: {model_name}")
@@ -90,6 +78,7 @@ def train_and_evaluate(
     f1 = f1_score(y_test, y_pred)
 
     return model, accuracy, precision, f1
+
 
 # Step 4: Main pipeline with MLflow integration
 
@@ -118,8 +107,8 @@ def main():
             mlflow.sklearn.log_model(model, artifact_path="model")
 
             print(
-                f"{model_name} metrics - Accuracy: {accuracy:.2f}, Precision: {precision:.2f}, F1-score: {f1:.2f}")
-    print("All models are trained and logged to mlflow!")
+                f"{model_name} metrics - Accuracy: {accuracy:.2f}, Precision: {precision:.2f}, F1-score: {f1:.2f}"
+            )
 
 
 if __name__ == "__main__":
