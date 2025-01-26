@@ -4,7 +4,7 @@ import numpy as np
 import os
 
 # Initialize Flask app
-app = Flask(__name__,template_folder='templates')
+app = Flask(__name__, template_folder='templates')
 
 # Load the pre-trained model and scaler
 model_path = "app/lr_model.joblib"
@@ -17,10 +17,12 @@ if os.path.exists(model_path) and os.path.exists(scaler_path):
 else:
     print("Error: Model or scaler file not found!")
 
+
 @app.route("/", methods=["GET"])
 def home():
     return render_template("index.html")
     # return jsonify({"message": "Breast Cancer Prediction API is running!"})
+
 
 @app.route("/predict", methods=["POST"])
 def predict():
@@ -44,6 +46,7 @@ def predict():
         })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 if __name__ == "__main__":
     app.run(debug=True)

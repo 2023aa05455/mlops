@@ -16,7 +16,7 @@ def load_data():
     data = load_breast_cancer()
     print("Dataset shape:", data.data.shape)
     X = pd.DataFrame(data.data, columns=data.feature_names).astype("float64")
-    y = pd.Series(data.target, name="target").astype("float64")  # Convert target to float64
+    y = pd.Series(data.target, name="target").astype("float64")
     return X, y
 
 
@@ -51,7 +51,8 @@ def train_and_evaluate(X_train, X_test, y_train, y_test):
 
 def main():
     """
-    Main function to train the model, log metrics, and save the model with MLflow.
+    Main function to train the model, log metrics,and
+     save the model with MLflow.
     """
     # Set MLflow experiment
     mlflow.set_experiment("Cancer Detection v1")
