@@ -17,5 +17,6 @@ def data():
 def test_train_and_evaluate(data):
     """Test for training and evaluating models."""
     X_train, X_test, y_train, y_test = data
-    model, accuracy, precision, f1 = train_and_evaluate(X_train, X_test, y_train, y_test)
+    model, accuracy, precision, f1 = train_and_evaluate(
+        X_train, X_test, y_train, y_test)
     assert accuracy > 0.9, f"Model accuracy should be >0.96, got {accuracy}"
