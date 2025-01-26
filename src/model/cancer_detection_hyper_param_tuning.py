@@ -31,7 +31,8 @@ def preprocess_data(X, y):
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
     X_train, X_test, y_train, y_test = train_test_split(
-        X_scaled, y, test_size=CONFIG["test_size"], random_state=CONFIG["random_seed"]
+        X_scaled, y, test_size=CONFIG["test_size"],
+        random_state=CONFIG["random_seed"]
     )
     return X_train, X_test, y_train, y_test
 
@@ -76,11 +77,11 @@ def main():
     X, y = load_data()
     X_train, X_test, y_train, y_test = preprocess_data(X, y)
 
-    print(f"Training and evaluating LogisticRegression with hyperparameter tuning...")
+    print("Training and evaluating Model with hyperparameter tuning...")
 
     # Train and evaluate
     best_model, best_params, accuracy, precision, f1 = train_and_evaluate(
-                X_train, X_test, y_train, y_test
+        X_train, X_test, y_train, y_test
     )
     print(
         " ------Model Performance Metrics----- \n"
