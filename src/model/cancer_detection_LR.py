@@ -28,7 +28,7 @@ def preprocess_data(X, y):
     X_train, X_test, y_train, y_test = train_test_split(
         X_scaled, y, test_size=0.2, random_state=42)
 
-    return X_train, X_test, y_train, y_test,scaler
+    return X_train, X_test, y_train, y_test, scaler
 
 
 # Step 3: Train and evaluate models
@@ -46,6 +46,7 @@ def train_and_evaluate(X_train, X_test, y_train, y_test):
     f1 = f1_score(y_test, y_pred)
 
     return model, accuracy, precision, f1
+
 
 def save_model(model, scaler):
     # Save the model and scaler using joblib
