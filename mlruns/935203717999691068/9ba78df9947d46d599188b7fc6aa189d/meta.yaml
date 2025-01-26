@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/ychavhan/Documents/M.Tech/MLOPS/mlops/mlruns/935203717999691068/9ba78df9947d46d599188b7fc6aa189d/artifacts
+end_time: 1737798439060
+entry_point_name: ''
+experiment_id: '935203717999691068'
+lifecycle_stage: active
+run_id: 9ba78df9947d46d599188b7fc6aa189d
+run_name: RandomForest
+run_uuid: 9ba78df9947d46d599188b7fc6aa189d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1737798434409
+status: 3
+tags: []
+user_id: ychavhan

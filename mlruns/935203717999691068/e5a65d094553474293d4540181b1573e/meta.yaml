@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/ychavhan/Documents/M.Tech/MLOPS/mlops/mlruns/935203717999691068/e5a65d094553474293d4540181b1573e/artifacts
+end_time: 1737798899514
+entry_point_name: ''
+experiment_id: '935203717999691068'
+lifecycle_stage: active
+run_id: e5a65d094553474293d4540181b1573e
+run_name: SVM
+run_uuid: e5a65d094553474293d4540181b1573e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1737798892660
+status: 3
+tags: []
+user_id: ychavhan
