@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, precision_score, f1_score
+import joblib
 
 # Step 1: Load dataset
 
@@ -27,7 +28,7 @@ def preprocess_data(X, y):
     X_train, X_test, y_train, y_test = train_test_split(
         X_scaled, y, test_size=0.2, random_state=42)
 
-    return X_train, X_test, y_train, y_test
+    return X_train, X_test, y_train, y_test,scaler
 
 
 # Step 3: Train and evaluate models
@@ -46,17 +47,25 @@ def train_and_evaluate(X_train, X_test, y_train, y_test):
 
     return model, accuracy, precision, f1
 
+def save_model(model, scaler):
+    # Save the model and scaler using joblib
+    joblib.dump(model, 'lr_model.joblib')
+    joblib.dump(scaler, 'app/scaler.joblib')
+    print("Model and scaler saved as joblib files.")
+
 
 def main():
     # Load and preprocess data
     X, y = load_data()
-    X_train, X_test, y_train, y_test = preprocess_data(X, y)
+    X_train, X_test, y_train, y_test, scaler = preprocess_data(X, y)
     print("Training and evaluating LogisticRegression Model ..!")
 
     # Train and evaluate
     model, accuracy, precision, f1 = train_and_evaluate(
         X_train, X_test, y_train, y_test
     )
+    # Save model and Scaler
+    save_model(model, scaler)
     # Log parameters and metrics
     print(
         "------LogisticRegression Metrics ----- \n",
