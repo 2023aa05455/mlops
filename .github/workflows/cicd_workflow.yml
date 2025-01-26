@@ -1,5 +1,5 @@
 # .github/workflows/ci-cd-pipeline.yml
-name: CI/CD Pipeline for MLOPS Assignment
+name: CI/CD Pipeline for MLOPS Assignment Group 57
 
 on:
   push:
@@ -77,5 +77,5 @@ jobs:
 
       - name: Deploy Model
         run: |
-          python src/model/cancer_detection_model.py
+          python src/model/cancer_detection_LR.py.py
           echo "Model deployed successfully!"
